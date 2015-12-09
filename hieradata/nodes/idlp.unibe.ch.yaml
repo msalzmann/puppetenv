@@ -1,0 +1,13 @@
+
+
+##sudoes file
+
+winbind::access:
+    - 'IDopenAccessAdmins'
+winbind::sudoers:
+    - '%IDopenAccessAdmins'
+# sudo rules for prtg-ssh monitoring
+sudo::configs:
+     'prtg-ssh':
+        'priority'  : 60
+        'content'    : "prtg-ssh   ALL=NOPASSWD: /usr/bin/rkhunter"

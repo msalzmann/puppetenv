@@ -1,0 +1,144 @@
+---
+
+## Global Settings
+## Local Users
+
+
+users_sysop:
+  sysop:
+    ensure: present
+    home: '/home/sysop'
+    shell: '/bin/bash'
+    managehome: 'true'
+    ssh_authorized_keys:
+      ssh_key_masalzmann:
+        type: 'ssh-rsa'
+        key : ENC[PKCS7,MIIC7QYJKoZIhvcNAQcDoIIC3jCCAtoCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAaQnpQsgoa3GLamcknzzloeIOGxBNHkkP9TzqMn5eTnfGx3JUOHJUd1QBuWlYhBiGEosnz+RlAjs4rZ43VxOsQ+fxvui9DYvw32zjNuMal37P/hR3pUsz+40H8weQt5LqD6c/hwUMXQAV9EXettuE0+7gO9wJv9DskPya5R2NE8YEPHEhZA3q3iolEKBZZyRdSYWx/DNo323LRyqoHP7hyyThJVPEZxrFb0m36460oyYOmLLUieXYHh64udCRmI8V7NU2gtpamfuW/jgvSHsAw95qS86ItpQlAP+Pbc3MqouoPJgi5Ef/GB/D7FoQ2fzdjqaJEioIrwUr3TN+jubcuzCCAa4GCSqGSIb3DQEHATAdBglghkgBZQMEASoEENUjMwzp9e1OykDnm2tAL2SAggGAjB3UpuWViNOkJEOLfqkNUnSvRS5X1sZ+Pv8DSJYlQfA0JGM7NJ3yvTWqZGcZHHGOa6l1H0yfTFUInFR9kiRSeEUpAwrQ3oucLKhjLl8MjGnHiLTWG6pMiEcIDh8tRbro7aM896qSGKXBrA/j/+nP7isI/7yxgKIreP4Jlhw6zAL+By2YgjQMGuFPnE6cQ2miiIDrS6CGtccIBoMCGq3P3vfm6nS7jNsBxVkOla+pqL8Kmdbr5ks7zezKTxcXOBuBW7qHpquoz3dpCumBrCtXEjKhxfQzflUy8BvDuphEtUEgs8dSZeG1y3I5V0qF5C/LCyZ/u4MaOBUiABs0BvuLicZE0VHqjxH1VzBcDMb49An/30fZINGCITwM3K1W9rJ9v/swIbewupATEeyveiwMi0QAt6vMd2yyt0RVsICkIf3jb05LmgkQb5dkmSxO9lSUc4+slx8cYj9o5J2MmVSu14K5iWPxkqeub82vIyKoB2t/5vAHcekZ3kRhA2TTjHoe]
+      ssh_key_cfriedli:
+        type: 'ssh-rsa'
+        key : ENC[PKCS7,MIIC7QYJKoZIhvcNAQcDoIIC3jCCAtoCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAMnBHF6/wMnC5G9pr7DAACoGrriQ0U9jB2y1Pbb8RE0MnQbWO6Gr0NGZqtZw2yBMdU7+9M14IaaD+czlAf3J4fyZuDhsWRLIdHbpcLJKyl1G2uLD+TZ1Okpe8KkkKPEFqimaxFR5+6lkIe7YthhQTn/4CTo0CIMvV4n2cGEDX6D6KNvU3uYGbYPyQm7qUUX+9PDCJL2DGKKsUSXuxUoXsGJxxB/wJ0Z76XvQmeppzrP5aDtWuseLApj0XzyNARjSRIcnddlHG2ou0HkG2ZY6atXySZ8QvsDNsrKtvqjOpJcSbh1N/aglbuTRfpugkoX45Xn+4yOnNz9+WBCiB2IWayzCCAa4GCSqGSIb3DQEHATAdBglghkgBZQMEASoEECamo2AviMLkCLxJ/7ekP++AggGA/ckF9uCvYXc3txj28+vXrFEG+2BUT+rdRKSmmrriy/nEXUud/jy1QxtFo5CEge1mkcLLwEiLDhu033uGsg7wfpLApskvzk8miqmrvGzoZMqTH1xoQybgKv5DdT40Xg+qV8PtuQ6+6q3K+mbJl2jtn85ftj42VnF55+k1RmmFNB19yLmo4sShQKfjk2hyAFjxQXzhh89E4OHx/Z11BK7K2o8GEgPlTbPBzYjlmbXe6P5o2pZaKpCHN988qZEZuMqT5zW8w3gqNnG0+y4dhnGRNTAU/Xo12IdggSVvqROXD0pSqZ9hfNcXY+tUpFaKSlxzewXXFgtkyXGK67cJvc3Ki7JjzHckA0+nWbVwgZAKg7oUKSBLC5p3tynyxUx9UBeJ64btGXlMsj9DhIYeCk/hXeTO+qVDHZ7WnihGf0ntdDSsNDGsIsFSs/+FsOiGy1Z8msZOhcexJLu8SZBMsVhZnxwgl1SXc9JM4qH5irvZWYpbe6rz7/nHtSBfMHZYpDj1]
+
+
+# local user
+winbind::sudoers:
+  - '%sysop'
+
+
+# NTP Server
+
+ntp::servers:
+  - 'ns1.unibe.ch'
+  - 'ns2.unibe.ch'
+  - 'time.campus.unibe.ch'
+
+# Vmwaretools
+vmwaretools::version: '9.4.10-2068191'
+vmwaretools::working_dir: '/tmp/vmwaretools'
+vmwaretools::archive_url: 'puppet:///fileserver/vmware/'
+vmwaretools::archive_md5: '309c86a9ad2413103a078e308f47d041'
+vmwaretools::keep_working_dir: true
+vmwaretools::force_install: true
+
+# SNMP
+snmp::com2sec:
+  - 'notConfigUser  default       ebinu'
+snmp::views:
+  - 'systemview included 1.'
+snmp::contact: 'christian.friedli@id.unibe.ch, matthias.salzmann@id.unibe.ch'
+snmp::location: 'UniBE ESX, CH'
+snmp::agentaddress:
+  - 'udp:161'
+snmp::accesses:
+  - 'notConfigGroup ""      any       noauth    exact  systemview none  none'
+
+# POSTFIX
+postfix::relayhost: 'smtp.unibe.ch'
+
+# Rsyslog
+
+rsyslog::client::log_remote: true
+rsyslog::client::spool_size: '1g'
+rsyslog::client::remote_type: 'tcp'
+rsyslog::client::remote_forward_format: 'RSYSLOG_TraditionalForwardFormat'
+rsyslog::client::log_local: true
+rsyslog::client::log_auth_local: true
+rsyslog::client::server: 'idlogger-backend.unibe.ch'
+rsyslog::client::port: '6514'
+rsyslog::client::remote_servers: false
+rsyslog::client::log_templates: false
+rsyslog::client::actionfiletemplate: false
+
+# linux hardening
+# preventing that puppet erases all configs in sudoer.d
+sudo::purge: false
+#sudo rules for local admin sysop
+sudo::configs:
+     'sysop':
+        'priority'  : 50
+        'content'   : "sysop ALL=(ALL) NOPASSWD: ALL"
+# sshd config
+ssh::server_options:
+    Protocol: '2'
+    AllowTcpForwarding: 'yes'
+    Port: '22'
+    X11Forwarding: 'no'
+    PermitRootLogin: 'no'
+    StrictModes: 'yes'
+    RSAAuthentication: 'yes'
+    PubkeyAuthentication: 'yes'
+    PermitEmptyPasswords: 'no'
+    ChallengeResponseAuthentication: 'no'
+    TCPKeepAlive: 'yes'
+    PrintMotd: 'yes'
+    PrintLastLog: 'yes'
+
+# sysctl
+sysctl::base::values:
+  kernel.core_uses_pid:
+    value: '1'
+  kernel.ctrl-alt-del:
+    value: '0'
+  kernel.kptr_restrict:
+    value: '1'
+  kernel.sysrq:
+    value: '0'
+  net.ipv4.conf.all.accept_redirects:
+    value: '0'
+  net.ipv4.conf.all.accept_source_route:
+    value: '0'
+  net.ipv4.conf.all.bootp_relay:
+    value: '0'
+  net.ipv4.conf.all.forwarding:
+    value: '0'
+  net.ipv4.conf.all.log_martians:
+    value: '1'
+  net.ipv4.conf.all.mc_forwarding:
+    value: '0'
+  net.ipv4.conf.all.proxy_arp:
+    value: '0'
+  net.ipv4.conf.all.rp_filter:
+    value: '1'
+  net.ipv4.conf.all.send_redirects:
+    value: '0'
+  net.ipv4.conf.default.accept_redirects:
+    value: '0'
+  net.ipv4.conf.default.accept_source_route:
+    value: '0'
+  net.ipv4.conf.default.log_martians:
+    value: '1'
+  net.ipv4.icmp_echo_ignore_broadcasts:
+    value: '1'
+  net.ipv4.icmp_ignore_bogus_error_responses:
+    value: '1'
+  net.ipv4.tcp_syncookies:
+    value: '1'
+  net.ipv4.tcp_timestamps:
+    value: '0'
+  net.ipv6.conf.all.accept_redirects:
+    value: '0'
+  net.ipv6.conf.all.accept_source_route:
+    value: '0'
+  net.ipv6.conf.default.accept_redirects:
+    value: '0'
+  net.ipv6.conf.default.accept_source_route:
+    value: '0'
