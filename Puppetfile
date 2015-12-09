@@ -24,7 +24,7 @@ mod 'saz/sudo', '3.1.0'
 mod 'rmueller/cron', '0.1.3'
 mod 'camptocamp/kmod', '2.1.0'
 mod 'srf/rkhunter', '0.1.4'
-
+mod 'theforeman/git', '1.4.1'
 
 
 mod 'tools',
